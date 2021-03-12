@@ -1,34 +1,45 @@
 #include <iostream>
 #include <Windows.h>
 
+void sendKey(BYTE key) {
+	keybd_event(0, key, KEYEVENTF_UNICODE, NULL);
+}
+
 int main() {
-	UINT error;
-
-	INPUT inputs[7];
-	ZeroMemory(inputs, sizeof(inputs));
-
-	inputs[0].type = INPUT_KEYBOARD;
-	inputs[0].ki.dwFlags = KEYEVENTF_UNICODE;
-	inputs[0].ki.wScan = 0x00C4;	//A with umlauts
-
-	inputs[1].type = INPUT_KEYBOARD;
-	inputs[1].ki.dwFlags = KEYEVENTF_UNICODE;
-	inputs[1].ki.wScan = 0x00E4;	//a with umlauts
-
+	SHORT shiftStat = 0;
 
 	while (1) {
 		if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) && (GetAsyncKeyState(VK_MENU) & 0x8000)) {		//CTLR and ALT pressed
-			if (GetAsyncKeyState(0x41) & 0x8000) {								//A key
-				if (GetAsyncKeyState(VK_LSHIFT) & 0x8000) {						//Shift pressed
-					error = SendInput(1, &inputs[0], sizeof(INPUT));
-					std::cout << std::hex << error;
+			shiftStat = (GetAsyncKeyState(VK_SHIFT) & 0x8000);
+			if (GetAsyncKeyState('A') & 0x8000) {			//A key
+				if (shiftStat) {							//Shift pressed
+					sendKey('Ä');							//send key A with umlauts
 				}
-				else {															//Shift not pressed
-					SendInput(1, &inputs[1], sizeof(INPUT));
+				else {										//Shift not pressed
+					sendKey('ä');							//send key a with umlauts
 				}
 			}
-			Sleep(500);
+			if (GetAsyncKeyState('O') & 0x8000) {
+				if (shiftStat) {
+					sendKey('Ö');
+				}
+				else {
+					sendKey('ö');
+				}
+			}
+			if (GetAsyncKeyState('U') & 0x8000) {
+				if (shiftStat) {
+					sendKey('Ü');
+				}
+				else {
+					sendKey('ü');
+				}
+			}
+			if (GetAsyncKeyState('S') & 0x8000) {
+				sendKey('ß');
+			}
 		}
+		Sleep(500);
 	}
 
 	return 0;
