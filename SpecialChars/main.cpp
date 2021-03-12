@@ -8,6 +8,7 @@ void sendKey(BYTE key) {
 int main() {
 	SHORT shiftStat = 0;
 
+	printf("SpecialChars running . . .\n");
 	while (1) {
 		if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) && (GetAsyncKeyState(VK_MENU) & 0x8000)) {		//CTLR and ALT pressed
 			shiftStat = (GetAsyncKeyState(VK_SHIFT) & 0x8000);
