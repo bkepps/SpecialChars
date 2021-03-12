@@ -38,8 +38,9 @@ int main() {
 			if (GetAsyncKeyState('S') & 0x8000) {
 				sendKey('ß');
 			}
+			Sleep(500);
 		}
-		Sleep(500);
+		Sleep(100);
 	}
 
 	return 0;
