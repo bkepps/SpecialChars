@@ -37,7 +37,8 @@ int main() {
 	stData->uFlags = NIF_ICON | NIF_TIP;
 	//stData.uCallbackMessage = WM_TRAY;
 	stData->hIcon = LoadIcon(NULL, MAKEINTRESOURCE(IDI_APPLICATION));
-	const char* toolTip = "Hello World!\0";
+	const char* toolTip = "SpecialChars is running\0";
+
 	int i = 0;
 	do {
 		stData->szTip[i] = toolTip[i];
