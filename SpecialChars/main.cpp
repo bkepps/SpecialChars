@@ -26,7 +26,7 @@ int main() {
 	if (GetCurrentProcessId() == dwProcessId)
 		ShowWindow(GetConsoleWindow(), SW_HIDE);
 	else
-		std::cout << "SpecialChars running . . ." << std::endl << "ctrl+C to exit" << std::endl << "running in console, so not hidden" << std::endl;
+		std::cout << "SpecialChars running . . ." << std::endl << "ctrl+alt+esc to exit" << std::endl << "running in console, so not hidden" << std::endl;
 
 	GetModuleHandle(nullptr);
 
