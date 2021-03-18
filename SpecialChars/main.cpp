@@ -23,10 +23,10 @@ int main() {
 	HWND consoleWnd = GetConsoleWindow();
 	DWORD dwProcessId;
 	GetWindowThreadProcessId(consoleWnd, &dwProcessId);
-	//if (GetCurrentProcessId() == dwProcessId)
-		//ShowWindow(GetConsoleWindow(), SW_HIDE);
-	//else
-		//std::cout << "SpecialChars running . . ." << std::endl << "ctrl+C to exit" << std::endl << "running in console, so not hidden" << std::endl;
+	if (GetCurrentProcessId() == dwProcessId)
+		ShowWindow(GetConsoleWindow(), SW_HIDE);
+	else
+		std::cout << "SpecialChars running . . ." << std::endl << "ctrl+C to exit" << std::endl << "running in console, so not hidden" << std::endl;
 
 	GetModuleHandle(nullptr);
 
