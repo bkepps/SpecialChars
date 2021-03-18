@@ -43,12 +43,6 @@ int main() {
 		stData->szTip[i] = toolTip[i];
 	} while (toolTip[i++] != '\0');
 
-	//toolTip = new CHAR[64];
-	//toolTip = L"ASd";
-	//LoadString(GetModuleHandle(NULL), 1, stData.szTip, "hi");
-	//stData->szTip = &toolTip;
-	//LoadStringSafe(IDS_TIP, stData->szTip, _countof(stData->szTip));
-
 	Shell_NotifyIcon(NIM_ADD, stData);
 
 	while (1) {
