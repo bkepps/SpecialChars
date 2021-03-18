@@ -4,6 +4,8 @@
 #define IDS_TIP                         1
 #define _countof(x) (sizeof(x) / sizeof((x)[0]))
 
+#include "resource.h"
+
 void LoadStringSafe(UINT nStrID, LPTSTR szBuf, UINT nBufLen)
 {
 	UINT nLen = LoadString(GetModuleHandleW(NULL), nStrID, szBuf, nBufLen);
@@ -36,7 +38,7 @@ int main() {
 	stData->hWnd = consoleWnd;
 	stData->uFlags = NIF_ICON | NIF_TIP;
 	//stData.uCallbackMessage = WM_TRAY;
-	stData->hIcon = LoadIcon(NULL, MAKEINTRESOURCE(IDI_APPLICATION));
+	stData->hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 	const char* toolTip = "SpecialChars is running\0";
 
 	int i = 0;
