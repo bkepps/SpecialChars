@@ -17,9 +17,9 @@ int main() {
 	if (GetCurrentProcessId() == dwProcessId)
 		ShowWindow(GetConsoleWindow(), SW_HIDE);
 	else
-		std::cout << "SpecialChars running . . ." << std::endl << "ctrl+alt+esc to exit" << std::endl << "running in console, so not hidden" << std::endl;
-
-	GetModuleHandle(nullptr);
+		std::cout << "SpecialChars running . . ." << std::endl 
+				  << "ctrl+alt+esc to exit" << std::endl 
+				  << "running in console, so not hidden" << std::endl;
 
 	PNOTIFYICONDATAW stData = new NOTIFYICONDATAW;
 	ZeroMemory(stData, sizeof(stData));
@@ -27,7 +27,7 @@ int main() {
 	stData->hWnd = consoleWnd;
 	stData->uFlags = NIF_ICON | NIF_TIP;
 	stData->hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
-	const char* toolTip = "SpecialChars is running\nLctrl+Rctrl+alt+shift to exit\0";
+	const char* toolTip = "SpecialChars is running . . .\nLctrl+Rctrl+alt+shift to exit\0";
 
 	int i = 0;
 	do {
