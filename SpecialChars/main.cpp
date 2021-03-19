@@ -39,7 +39,7 @@ int main() {
 	stData->uFlags = NIF_ICON | NIF_TIP;
 	//stData.uCallbackMessage = WM_TRAY;
 	stData->hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
-	const char* toolTip = "SpecialChars is running\0";
+	const char* toolTip = "SpecialChars is running\nLctrl+Rctrl+alt+shift to exit\0";
 
 	int i = 0;
 	do {
@@ -78,7 +78,7 @@ int main() {
 			if (GetAsyncKeyState('S') & 0x8000) {
 				sendKey('ß');
 			}		
-			if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+			if ((GetAsyncKeyState(VK_RCONTROL) & 0x8000) && shiftStat && (GetAsyncKeyState(VK_LCONTROL))) {
 				Shell_NotifyIcon(NIM_DELETE, stData);
 				return 1;
 			}
