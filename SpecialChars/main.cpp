@@ -1,18 +1,7 @@
 #include <Windows.h>
 #include <iostream>
 
-#define IDS_TIP                         1
-#define _countof(x) (sizeof(x) / sizeof((x)[0]))
-
 #include "resource.h"
-
-void LoadStringSafe(UINT nStrID, LPTSTR szBuf, UINT nBufLen)
-{
-	UINT nLen = LoadString(GetModuleHandleW(NULL), nStrID, szBuf, nBufLen);
-	if (nLen >= nBufLen)
-		nLen = nBufLen - 1;
-	szBuf[nLen] = 0;
-}
 
 void sendKey(BYTE key) {
 	keybd_event(0, key, KEYEVENTF_UNICODE, NULL);
@@ -37,7 +26,6 @@ int main() {
 	stData->cbSize = sizeof(stData);
 	stData->hWnd = consoleWnd;
 	stData->uFlags = NIF_ICON | NIF_TIP;
-	//stData.uCallbackMessage = WM_TRAY;
 	stData->hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
 	const char* toolTip = "SpecialChars is running\nLctrl+Rctrl+alt+shift to exit\0";
 
